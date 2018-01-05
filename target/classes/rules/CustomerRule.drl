@@ -1,0 +1,14 @@
+//created on: Dec 3, 2017
+package rules
+
+import com.sample.CustomerRuleObject;
+ 
+dialect "java"
+ 
+rule "CustomerRule"
+ 
+    when
+        customerRuleObject:CustomerRuleObject (getFirstName() == 'Deepak' )
+    then
+        customerRuleObject.setMessage(customerRuleObject.getMessage()+'First Name is ' + customerRuleObject.getFirstName());
+end
