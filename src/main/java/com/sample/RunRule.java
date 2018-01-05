@@ -9,6 +9,7 @@ public class RunRule {
     public static void main(String[] args) {
          
         try {
+        	Example_Add_Entity ex = new Example_Add_Entity();
         	// load up the knowledge base
             KieServices ks = KieServices.Factory.get();
             KieContainer kContainer = ks.getKieClasspathContainer();
@@ -18,7 +19,7 @@ public class RunRule {
             customerRuleObject.setFirstName("Deepak");
             kSession.insert(customerRuleObject);
             kSession.fireAllRules();
-            Example_Add_Entity add_entity = new Example_Add_Entity();
+//            Example_Add_Entity add_entity = new Example_Add_Entity();
             System.out.println(customerRuleObject.getMessage());
         } catch (Exception ex) {
             ex.printStackTrace();

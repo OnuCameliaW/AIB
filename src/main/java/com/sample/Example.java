@@ -5,28 +5,20 @@ import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Example
- *
- */
-public class Example implements Serializable {
 
-	 
-	private String Name; 
+@Entity
+public class Example {
+	@Id
 	private Integer Id;
-	private static final long serialVersionUID = 1L;	
+	 protected String FirstName;
+	
 	public Example() {
 		super();
 	} 
-	   
-	public String getName() {
- 		return this.Name;
-	}
-
-	public void setName(String Name) {
-		this.Name = Name;
-	}
-	   
+	public Example(String fn) {
+		super();
+		this.FirstName =  fn;
+	} 
 	public Integer getId() {
  		return this.Id;
 	}
@@ -34,6 +26,10 @@ public class Example implements Serializable {
 	public void setId(Integer Id) {
 		this.Id = Id;
 	}
+	 @Override
+	    public String toString() {
+	        return String.format("(%d, %d)", this.FirstName);
+	    }
 	
    
 }
