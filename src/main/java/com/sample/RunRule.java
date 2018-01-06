@@ -9,7 +9,7 @@ public class RunRule {
     public static void main(String[] args) {
          
         try {
-        	Example_Add_Entity ex = new Example_Add_Entity();
+        	Example_Entity ex = new Example_Entity();
         	// load up the knowledge base
             KieServices ks = KieServices.Factory.get();
             KieContainer kContainer = ks.getKieClasspathContainer();

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Example {
 	@Id
 	private Integer Id;
-	 protected String FirstName;
+	public String FirstName;
 	
 	public Example() {
 		super();
@@ -22,14 +22,18 @@ public class Example {
 	public Integer getId() {
  		return this.Id;
 	}
-
 	public void setId(Integer Id) {
 		this.Id = Id;
 	}
-	 @Override
-	    public String toString() {
-	        return String.format("(%d, %d)", this.FirstName);
+	public void setFirstName(String fn) {
+		this.FirstName = fn;
+	}
+	public String getFirstName() {
+ 		return this.FirstName;
+	}
+	  public String result(){
+		  setFirstName("CamiLulu");
+	      return "done";
 	    }
-	
    
 }
