@@ -9,18 +9,15 @@ public class RunRule {
     public static void main(String[] args) {
          
         try {
-        	Example_Entity ex = new Example_Entity();
+        	FormROA fr = new FormROA();
         	// load up the knowledge base
             KieServices ks = KieServices.Factory.get();
             KieContainer kContainer = ks.getKieClasspathContainer();
             KieSession kSession = kContainer.newKieSession("ksession-rules");
              
-            CustomerRuleObject customerRuleObject = new CustomerRuleObject();
-            customerRuleObject.setFirstName("Deepak");
-            kSession.insert(customerRuleObject);
+            kSession.insert(fr);
             kSession.fireAllRules();
-//            Example_Add_Entity add_entity = new Example_Add_Entity();
-            System.out.println(customerRuleObject.getMessage());
+            //System.out.println(customerRuleObject.getMessage());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

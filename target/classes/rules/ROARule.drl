@@ -1,0 +1,26 @@
+package rules
+import com.sample.*;
+
+rule "ROARuleVeryGood"
+ 
+    when
+        roa:FormROA (ROA >= 3 )
+    then
+    	roa.setROAMessage("The ROA is very good");
+end
+
+rule "ROARuleGood"
+ 
+    when
+        roa:FormROA (ROA >= 2 && ROA < 3 )
+    then
+    	roa.setROAMessage("The ROA is good");
+end
+
+rule "ROARuleLow"
+ 
+    when
+        roa:FormROA (ROA < 2 )
+    then
+    	roa.setROAMessage("The ROA is low");
+end

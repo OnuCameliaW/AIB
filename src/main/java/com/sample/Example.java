@@ -1,6 +1,5 @@
 package com.sample;
 
-import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;

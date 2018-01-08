@@ -1,0 +1,26 @@
+package rules
+import com.sample.*;
+
+rule "ROERuleVeryGood"
+ 
+    when
+        roe:FormROA (ROE >= 5 )
+    then
+    	roe.setROEMessage("The ROE is very good");
+end
+
+rule "ROERuleGood"
+ 
+    when
+        roe:FormROA (ROE >= 1 && ROE < 5 )
+    then
+    	roe.setROEMessage("The ROE is good");
+end
+
+rule "ROERuleLow"
+ 
+    when
+        roe:FormROA (ROE < 1 )
+    then
+    	roe.setROEMessage("The ROE is low");
+end
