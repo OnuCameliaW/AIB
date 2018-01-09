@@ -19,6 +19,9 @@ public class FormROA {
 	
      private EntityManager em;
      public Product Product = new Product();
+     public ProductController pc = new ProductController();
+     public ShareholderController sc = new ShareholderController();
+     public AssetController ac = new AssetController();
 	 public List<Product> Products =new ArrayList<Product>();
 	 public List<Asset> Assets =new ArrayList<Asset>();
 	 public List<Shareholder> Shareholders =new ArrayList<Shareholder>();
@@ -31,14 +34,14 @@ public class FormROA {
 	 public String ROEMessage = "NaN";
 	 
      public FormROA() {
+    	EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProjDrools");
+  		em = emf.createEntityManager();
+  		
     	ks = KieServices.Factory.get();   	
         kContainer = ks.getKieClasspathContainer();
-        kSession = kContainer.newKieSession("ksession-rules");
-    	   	 
- 		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProjDrools");
- 		em = emf.createEntityManager();
- 		
+        kSession = kContainer.newKieSession("ksession-rules");    	   	 		
      }
+     
  	public void setROAMessage(String message) {
  		this.ROAMessage = message;
  	}
@@ -51,36 +54,6 @@ public class FormROA {
  	public String getROEMessage() {
  		return this.ROEMessage;
  	}
-	public void getTotalProfit() {
-		Object ProductProfit = em.createQuery("SELECT SUM(p.NetIncome) FROM Product p").getSingleResult();
-		this.profit = (long)ProductProfit;
-	}
-	public void getTotalAssetPrice() {
-		Object AssetsPrice = em.createQuery("SELECT SUM(a.Price) FROM Asset a").getSingleResult();
-		this.assetsPrice = (long)AssetsPrice;
-	}
-	public void getTotaEquity() {
-		Object TotalEquity= em.createQuery("SELECT SUM(s.Equity) FROM Shareholder s").getSingleResult();
-		this.totalEquity = (long)TotalEquity;
-	}
-	public void calculateROA() {
-		getTotalProfit();
-		getTotalAssetPrice();
-		if(this.assetsPrice != 0) {
-			this.ROA = (this.profit / this.assetsPrice) * 100;
-		}
-	}
-	public void calculateROE() {
-		getTotalProfit();
-		getTotaEquity();
-		if(this.totalEquity != 0) {
-			this.ROE = (this.profit / this.totalEquity) * 100;
-		}
-	}
-	public void getProductsList() {
-		this.Products = em.createQuery("SELECT p FROM Product p").getResultList();
-		System.out.println("merge");
-	}
 	public Product getProduct() {
 		return this.Product;
 	}
@@ -93,7 +66,20 @@ public class FormROA {
 	public void setAssets(List<Asset> assets) {
 		this.Assets = assets;
 	}
-	
+	public void calculateROA() {
+		this.profit = pc.getTotalProfit();
+		this.assetsPrice = ac.getTotalAssetPrice();
+		if(this.assetsPrice != 0) {
+			this.ROA = (this.profit / this.assetsPrice) * 100;
+		}
+	}
+	public void calculateROE() {
+		this.profit = pc.getTotalProfit();
+		this.totalEquity = sc.getTotaEquity();
+		if(this.totalEquity != 0) {
+			this.ROE = (this.profit / this.totalEquity) * 100;
+		}
+	}
 	public void addProduct(ActionEvent event) {
 		this.em.getTransaction().begin();
 		this.em.persist(this.Product);
@@ -106,7 +92,4 @@ public class FormROA {
      public void Close_Entity() {
          em.close();
      }
-     public String result(){
-	      return "done";
-	    }
 }
