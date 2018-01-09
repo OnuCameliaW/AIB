@@ -8,18 +8,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.kie.api.*;
 
-public class ShareholderController {
+public class DebtController {
     private EntityManager em;
-	public ShareholderController(){
+	public DebtController(){
 		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProjDrools");
  		em = emf.createEntityManager();
 	}
-	public long getTotaEquity() {
-		Object totalEquity= em.createQuery("SELECT SUM(s.Equity) FROM Shareholder s").getSingleResult();
+	public long getTotalDebts() {
+		Object totalEquity= em.createQuery("SELECT SUM(d.Amount) FROM Debt d").getSingleResult();
 		return (long)totalEquity;
-	}
-	public long getTotalDividends() {
-		Object totalDividends= em.createQuery("SELECT SUM(s.Dividend) FROM Shareholder s").getSingleResult();
-		return (long)totalDividends;
 	}
 }

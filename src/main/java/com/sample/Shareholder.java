@@ -7,14 +7,16 @@ public class Shareholder {
 	public Integer Id;
 	public String Name;
 	public Integer Equity;
-
+	public Integer Dividend;
+	
 	public Shareholder() {
 		super();
 	}
-	public Shareholder(String name, Integer equity) {
+	public Shareholder(String name, Integer equity, Integer dividend) {
 		super();
 		this.Name = name;
 		this.Equity = equity;
+		this.Dividend = dividend;
 	}
 	public Integer getId() {
  		return this.Id;
@@ -33,5 +35,11 @@ public class Shareholder {
 	}
 	public void setEquity(Integer equity) {
 		this.Equity = equity;
+	}	
+	public Integer getDividend() {
+ 		return this.Dividend;
+	}
+	public void setDividend(Integer dividend) {
+		this.Dividend = dividend;
 	}	
 }

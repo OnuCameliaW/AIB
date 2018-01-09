@@ -7,14 +7,16 @@ public class Product {
 	public Integer Id;
 	public String Name;
 	public Integer NetIncome;
-
+	public Integer GrossIncome;
+	
 	public Product() {
 		super();
 	}
-	public Product(String name, Integer net_income) {
+	public Product(String name, Integer net_income, Integer gross_income) {
 		super();
 		this.Name = name;
 		this.NetIncome = net_income;
+		this.GrossIncome = gross_income;
 	}
 	public Integer getId() {
  		return this.Id;
@@ -33,5 +35,11 @@ public class Product {
 	}
 	public void setNetIncome(Integer net_income) {
 		this.NetIncome = net_income;
+	}	
+	public Integer getGrossIncome() {
+ 		return this.NetIncome;
+	}
+	public void setGrossIncome(Integer gross_income) {
+		this.GrossIncome = gross_income;
 	}	
 }

@@ -1,0 +1,27 @@
+package rules
+import com.sample.*;
+
+rule "ROCERuleVeryGood"
+ 
+    when
+        roce:FormROIC (ROCE > 15 )
+    then
+    	roce.setROCEMessage("The ROCE is very good");
+end
+
+rule "ROCERuleGood"
+ 
+    when
+        roce:FormROIC (ROCE <= 15 && ROCE >= 5 )
+    then
+    	roce.setROCEMessage("The ROCE is good");
+end
+
+rule "ROCERuleLow"
+ 
+    when
+        roce:FormROIC (ROCE < 5 )
+    then
+    	roce.setROCEMessage("The ROCE is low");
+end
+

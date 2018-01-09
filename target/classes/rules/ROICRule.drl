@@ -1,0 +1,27 @@
+package rules
+import com.sample.*;
+
+rule "ROICRuleVeryGood"
+ 
+    when
+        roic:FormROIC (ROIC > 20 )
+    then
+    	roic.setROICMessage("The ROIC is very good");
+end
+
+rule "ROICRuleGood"
+ 
+    when
+        roic:FormROIC (ROIC <= 20 && ROIC >= 10 )
+    then
+    	roic.setROICMessage("The ROIC is good");
+end
+
+rule "ROICRuleLow"
+ 
+    when
+        roic:FormROIC (ROIC < 10 )
+    then
+    	roic.setROICMessage("The ROIC is low");
+end
+

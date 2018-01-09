@@ -19,9 +19,13 @@ public class ProductController {
 		Object productProfit = em.createQuery("SELECT SUM(p.NetIncome) FROM Product p").getSingleResult();
 		return (long)productProfit;
 	}
-	
+	public long getGrossProfit() {
+		Object productGrossProfit = em.createQuery("SELECT SUM(p.GrossIncome) FROM Product p").getSingleResult();
+		return (long)productGrossProfit;
+	}
 	public List<Product> getProductsList() {
 		List<Product> products = em.createQuery("SELECT p FROM Product p").getResultList();
 		return products;
 	}
+	
 }
